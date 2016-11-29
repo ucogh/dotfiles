@@ -2,6 +2,7 @@
 #
 # Ulf's dotfile installer. Usage:
 #
+#   curl https://raw.githubusercontent.com/ucogh/dotfiles/master/install.sh | sh
 #
 # or:
 #
@@ -23,11 +24,11 @@ function has() {
 }
 
 function note() {
-    echo "^[[32;1m * ^[[0m$*"
+    echo "[32;1m * [0m$*"
 }
 
 function warn() {
-    echo "^[[31;1m * ^[[0m$*"
+    echo "[31;1m * [0m$*"
 }
 
 function die() {
@@ -98,9 +99,6 @@ else
         unpack_tarball
     fi
 fi
-
-exit
-
 
 note "Installing dotfiles..."
 for path in .* ; do
