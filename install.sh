@@ -1,8 +1,7 @@
 #!/bin/bash -e
 #
-# Ian's dotfile installer. Usage:
+# Ulf's dotfile installer. Usage:
 #
-#   curl https://github.com/statico/dotfiles/raw/master/install.sh | sh
 #
 # or:
 #
