@@ -40,24 +40,23 @@ function link() {
     src=$1
     dest=$2
 
-    #if [ -e $dest ]; then
-        #if [ -L $dest ]; then
-            ## Already symlinked -- I'll assume correctly.
-            #return
-        #else
-            ## Rename files with a ".old" extension.
-            #warn "$dest file already exists, renaming to $dest.old"
-            #backup=$dest.old
-            #if [ -e $backup ]; then
-                #die "$backup already exists. Aborting."
-            #fi
-            #mv -v $dest $backup
-        #fi
-    #fi
+    if [ -e $dest ]; then
+        if [ -L $dest ]; then
+            # Already symlinked -- I'll assume correctly.
+            return
+        else
+            # Rename files with a ".old" extension.
+            warn "$dest file already exists, renaming to $dest.old"
+            backup=$dest.old
+            if [ -e $backup ]; then
+                die "$backup already exists. Aborting."
+            fi
+            mv -v $dest $backup
+        fi
+    fi
 
     # Update existing or create new symlinks.
-    #ln -vsf $src $dest
-    echo "function link()"
+    ln -vsf $src $dest
 }
 
 function unpack_tarball() {
@@ -75,6 +74,7 @@ function unpack_tarball() {
     tar --strip-components 1 -zxvf $tempfile
     rm -v $tempfile
 }
+
 
 if [ -e $basedir ]; then
     # Basedir exists. Update it.
